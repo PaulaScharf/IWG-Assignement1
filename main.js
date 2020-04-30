@@ -39,5 +39,15 @@ AFRAME.registerComponent('change-color-on-tap', {
 				}
 			});
 		});
+
+		el.addEventListener('mouseenter', function () {
+			let popup = document.getElementById("myPopup");
+			popup.classList.toggle("show");
+		});
+
+		el.addEventListener('mouseleave', function () {
+			//let popup = document.getElementById("myPopup");
+			//popup.classList.toggle("show");
+		});
 	}
 });

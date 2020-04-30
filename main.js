@@ -1,25 +1,41 @@
 AFRAME.registerComponent('change-color-on-tap', {
 	schema: {
-		color: {default: "#27ef18"}
+		color: {default: "#ff3133"}
 	},
 
 	init: function () {
-
 		var data = this.data;
 		var el = this.el;  // <a-box>
+		let defaultMaterial;
 		var self = this;
 		self.trees = [];
-		//var defaultColor = el.getAttribute('material').color;
+
+		el.addEventListener("model-loaded", e =>{
+			let tree3D = el.getObject3D('mesh'); // get the THREEjs group
+			if (!tree3D){return;}
+			tree3D.traverse(function(node){ // this is how you loop through (traverse) the models
+				if (node.isMesh){
+					self.trees.push(node);
+					console.log(node.name);
+					if(node.name == "element"){
+						defaultMaterial = node.material; // store a reference to the material you want to modify later
+					}
+				}
+			});
+		});
 
 		el.addEventListener('click', function() {
-			alert("tap!");
 			let tree3D = el.getObject3D('mesh'); // get the THREEjs group
 			if (!tree3D){return;}// log the THREEjs group so you can look at all of its contents and parameters.
 			tree3D.traverse(function(node){ // this is how you loop through (traverse) the models
 				if (node.isMesh){
-					node.material.map = null; // removes the texture so we can see color clearly
-					var newMaterial = new THREE.MeshStandardMaterial({color: 0xFF00FF}); //pink
-					node.material = newMaterial;
+					let oldColor = node.material.color;
+					if ("#" + oldColor.getHexString() === data.color) {
+						node.material = defaultMaterial;
+					} else {
+						var newMaterial = new THREE.MeshStandardMaterial({color: data.color}); //pink
+						node.material = newMaterial;
+					}
 				}
 			});
 		});

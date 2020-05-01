@@ -2,5 +2,5 @@
 Interaction with Geoinformation: Individual Assignment 1
 
 # Ideas for Interaction
-- tapping/gazing on a tree opens a dialog with information
-- tap and hold changes its color
+- gazing a tree opens a dialog with information
+- gazing a tree and pressing DOM button changes its color

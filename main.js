@@ -10,7 +10,7 @@ AFRAME.registerComponent('change-color-on-tap', {
 		let self = this;
 		self.trees = [];
 		let popup = document.getElementById("myPopup");
-
+/*
 		el.addEventListener("model-loaded", e =>{
 			let tree3D = el.getObject3D('mesh'); // get the THREEjs group
 			if (!tree3D){return;}
@@ -39,9 +39,10 @@ AFRAME.registerComponent('change-color-on-tap', {
 				}
 			});
 		});
+		*/
 
 		el.addEventListener('mouseenter', function () {
-			console.log("show");
+			console.log(el);
 			popup.classList.toggle("show");
 		});
 

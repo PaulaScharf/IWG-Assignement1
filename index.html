@@ -11,16 +11,21 @@
 
     <!--script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script-->
 
+    <link rel="stylesheet" type="text/css" href="./style.css">
+
     <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
     <script src="https://raw.githack.com/jeromeetienne/AR.js/2.1.8/aframe/build/aframe-ar.js"></script>
 </head>
 <script src="./main.js"></script>
 <body style='margin : 0px; overflow: hidden;'>
+<div class="popup">
+    <span class="popuptext" id="myPopup">This is a tree</span>
+</div>
 <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;"
          cursor="rayOrigin: mouse; fuse: true; fuseTimeout: 0;"
          raycaster="objects: [change-color-on-tap];"
          vr-mode-ui="enabled: false">
-    <a-marker preset="hiro">
+    <a-marker preset="hiro" cursor='rayOrigin: mouse;'>
         <a-entity
                 id="basemap"
                 gltf-model="assets/basemap.gltf"
@@ -349,8 +354,5 @@
         <a-cursor></a-cursor>
     </a-entity>
 </a-scene>
-<div class="centered">
-    <span class="popuptext" id="myPopup">You found a tree :)</span>
-</div>
 </body>
 </html>

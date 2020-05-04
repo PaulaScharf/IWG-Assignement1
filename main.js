@@ -4,11 +4,12 @@ AFRAME.registerComponent('change-color-on-tap', {
 	},
 
 	init: function () {
-		var data = this.data;
-		var el = this.el;  // <a-box>
+		let data = this.data;
+		let el = this.el;
 		let defaultMaterial;
-		var self = this;
+		let self = this;
 		self.trees = [];
+		let popup = document.getElementById("myPopup");
 
 		el.addEventListener("model-loaded", e =>{
 			let tree3D = el.getObject3D('mesh'); // get the THREEjs group
@@ -16,7 +17,6 @@ AFRAME.registerComponent('change-color-on-tap', {
 			tree3D.traverse(function(node){ // this is how you loop through (traverse) the models
 				if (node.isMesh){
 					self.trees.push(node);
-					console.log(node.name);
 					if(node.name == "element"){
 						defaultMaterial = node.material; // store a reference to the material you want to modify later
 					}
@@ -41,13 +41,13 @@ AFRAME.registerComponent('change-color-on-tap', {
 		});
 
 		el.addEventListener('mouseenter', function () {
-			let popup = document.getElementById("myPopup");
+			console.log("show");
 			popup.classList.toggle("show");
 		});
 
 		el.addEventListener('mouseleave', function () {
-			//let popup = document.getElementById("myPopup");
-			//popup.classList.toggle("show");
+			console.log("hide");
+			popup.classList.toggle("show");
 		});
 	}
 });

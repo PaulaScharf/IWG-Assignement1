@@ -42,12 +42,12 @@ AFRAME.registerComponent('change-color-on-tap', {
 		*/
 
 		el.addEventListener('mouseenter', function () {
-			console.log(el);
-			popup.classList.toggle("show");
+			if(!popup.classList.contains("show")) {
+				popup.classList.toggle("show");
+			}
 		});
 
 		el.addEventListener('mouseleave', function () {
-			console.log("hide");
 			popup.classList.toggle("show");
 		});
 	}

@@ -1,3 +1,4 @@
+let currentElement;
 AFRAME.registerComponent('change-color-on-tap', {
 	schema: {
 		color: {default: "#ff3133"}
@@ -10,7 +11,8 @@ AFRAME.registerComponent('change-color-on-tap', {
 		let self = this;
 		self.trees = [];
 		let popup = document.getElementById("myPopup");
-/*
+		let button = document.getElementById("colorTree");
+
 		el.addEventListener("model-loaded", e =>{
 			let tree3D = el.getObject3D('mesh'); // get the THREEjs group
 			if (!tree3D){return;}
@@ -24,7 +26,7 @@ AFRAME.registerComponent('change-color-on-tap', {
 			});
 		});
 
-		el.addEventListener('click', function() {
+		el.addEventListener('change-color', function() {
 			let tree3D = el.getObject3D('mesh'); // get the THREEjs group
 			if (!tree3D){return;}// log the THREEjs group so you can look at all of its contents and parameters.
 			tree3D.traverse(function(node){ // this is how you loop through (traverse) the models
@@ -39,18 +41,27 @@ AFRAME.registerComponent('change-color-on-tap', {
 				}
 			});
 		});
-		*/
 
 		el.addEventListener('mouseenter', function () {
-			console.dir("show");
+			currentElement = el;
 			if(!popup.classList.contains("show")) {
+				console.dir("show");
 				popup.classList.toggle("show");
+			}
+			if(button.classList.contains("disabled")) {
+				button.classList.toggle("disabled");
 			}
 		});
 
 		el.addEventListener('mouseleave', function () {
-			console.dir("hide");
-			popup.classList.toggle("show");
+			if(popup.classList.contains("show")) {
+				console.dir("hide");
+				popup.classList.toggle("show");
+			}
+			if(!button.classList.contains("disabled")) {
+				button.classList.toggle("disabled");
+			}
 		});
 	}
+
 });

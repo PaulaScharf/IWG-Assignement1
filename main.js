@@ -26,6 +26,10 @@ AFRAME.registerComponent('change-color-on-tap', {
 			});
 		});
 
+		/**
+		 * If the element receives the event "change-color" its color to the given one (see schema). The event is triggered
+		 * by pressing a button.
+		 */
 		el.addEventListener('change-color', function() {
 			let tree3D = el.getObject3D('mesh'); // get the THREEjs group
 			if (!tree3D){return;}// log the THREEjs group so you can look at all of its contents and parameters.
@@ -42,6 +46,10 @@ AFRAME.registerComponent('change-color-on-tap', {
 			});
 		});
 
+		/**
+		 * If the gaze enters the element show a popup containing information and enable the button to change the color.
+		 * Also set currentElement to this element.
+		 */
 		el.addEventListener('mouseenter', function () {
 			currentElement = el;
 			if(!popup.classList.contains("show")) {
@@ -53,6 +61,9 @@ AFRAME.registerComponent('change-color-on-tap', {
 			}
 		});
 
+		/**
+		 * If the gaze leaves the element hide the popup containing information. Also disable the button to change the color.
+		 */
 		el.addEventListener('mouseleave', function () {
 			if(popup.classList.contains("show")) {
 				console.dir("hide");
